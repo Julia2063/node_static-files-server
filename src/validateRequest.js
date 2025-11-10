@@ -6,23 +6,9 @@ const validateRequest = (fileName) => {
     message: '',
   };
 
-  if (fileName === 'file') {
-    result.code = 200;
-    result.message = "Request should start with '/file/' and contain file name";
-
-    return result;
-  }
-
   if (!fileName.startsWith('file/')) {
     result.code = 400;
     result.message = "Request should start with '/file/'";
-
-    return result;
-  }
-
-  if (fileName.includes('..')) {
-    result.code = 400;
-    result.message = 'Bad Request';
 
     return result;
   }
