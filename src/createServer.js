@@ -11,13 +11,12 @@ const createServer = () => {
 
     const { code, message } = validateRequest(fileName);
 
-    if (!code || /^file\/?$/.test(fileName)) {
+    if (!code) {
       fs.readFile(
         path.join('public', fileName.replace(/^file\/?/, '') || 'index.html'),
         (err, data) => {
           if (!err) {
             res.statusCode = 200;
-            res.setHeader('Content-Type', 'text/plain');
             res.end(data);
           } else {
             res.statusCode = 404;
